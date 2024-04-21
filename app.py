@@ -40,10 +40,15 @@ class App:
     
     def _footerMenu(self):
         
-        input('Press any key to return menu: ')
+        input('\nPress any key to return menu: ')
             
         self._show_menu()         
     
+    def _exit(self):
+        
+        os.system('cls')
+        
+        quit()
     
     def _show_menu(self):        
         
@@ -65,7 +70,12 @@ class App:
             
             self._show_subtitle('List today\'s records')
             
-            self._logBook.list_records()    
+            self._logBook.list_records()
+            
+        else:
+            
+            self._exit()
+                
 
         self._footerMenu()        
                         
