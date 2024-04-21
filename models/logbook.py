@@ -30,11 +30,17 @@ class LogBook:
 
     def list_records(self):
         
-        print(f'{'#ID'.ljust(4)} | {'Ticket'.ljust(8)} | {'Date start'.ljust(20)} | {'Date end'.ljust(20)} | {'In Qualitor'.ljust(10)} | Activity')
-                
-        for record in self._records:
+        if len(self._records) > 0:
             
-            print(record)
+            print(f'{'#ID'.ljust(4)} | {'Ticket'.ljust(8)} | {'Date start'.ljust(20)} | {'Date end'.ljust(20)} | {'In Qualitor'.ljust(10)} | Activity')
+                    
+            for record in self._records:
+                
+                print(record)
+                
+        else:
+            
+            print('List\'s empty')
             
             
     def get_record(self, id):
