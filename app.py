@@ -68,7 +68,7 @@ class App:
         
     def _resume_logBook_today(self):
         
-        self._show_title('List today\'s records')
+        self._show_title('Record\'s list today\'s')
                 
         self._logBook.list_records()
                         
