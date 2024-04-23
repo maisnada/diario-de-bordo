@@ -8,6 +8,10 @@ class Record:
         self._date_end = date_end
         self._save_qualitor = False
         self._activity = activity
+        
+    def update_save_qualitor(self):
+        
+        self._save_qualitor = not self._save_qualitor
     
     def __str__(self):
         

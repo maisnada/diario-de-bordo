@@ -54,10 +54,11 @@ class LogBook:
         
         self.list_records()
         
-        id_selected = int(input('\nPress record\'s ID for update: '))
+        id_selected = int(input('\nPress record\'s ID for update: '))                           
         
-        self._records[id_selected]._save_qualitor = not self._records[id_selected]._save_qualitor            
+        self._records[id_selected - 1].update_save_qualitor()
         
+    set 
     
     def __str__(self):
         
