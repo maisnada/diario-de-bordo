@@ -64,14 +64,17 @@ class LogBook:
         
         id_selected = int(input('\nPress record\'s ID for set date end: '))
         
-        date_select = input(f'\nPress date or enter for current date [{datetime.now().strftime('%d/%m/%Y %H:%M')}]')    
+        date_select = input(f'\nPress date or enter for current date [{datetime.now().strftime('%d/%m/%Y %H:%M')}]: ')    
         
-        if date_select == None:
+        if not date_select:
             
-            print('vazio')
+            self._records[id_selected -1].date_end = datetime.now()
+            
         else:
-            print(type(date_select))
+            
+            datetime_object = datetime.strptime(date_select, '%d/%m/%Y %H:%M')
          
+            self._records[id_selected -1].date_end = datetime_object
         
     
     def __str__(self):

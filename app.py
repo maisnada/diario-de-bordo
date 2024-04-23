@@ -59,6 +59,8 @@ class App:
             self._show_title('Set date end in record')
             
             self._logBook.set_date_end_record()
+            
+            self._show_menu()
         
         elif option_selected == 3:
             
