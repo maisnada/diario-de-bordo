@@ -50,7 +50,7 @@ class LogBook:
         print(self._records[id - 1]) 
         
     
-    def update_status_qualitor(self):
+    def update_status_qualitor_record(self):
         
         self.list_records()
         
@@ -58,7 +58,21 @@ class LogBook:
         
         self._records[id_selected - 1].update_save_qualitor()
         
-    set 
+    def set_date_end_record(self):
+        
+        self.list_records()
+        
+        id_selected = int(input('\nPress record\'s ID for set date end: '))
+        
+        date_select = input(f'\nPress date or enter for current date [{datetime.now().strftime('%d/%m/%Y %H:%M')}]')    
+        
+        if date_select == None:
+            
+            print('vazio')
+        else:
+            print(type(date_select))
+         
+        
     
     def __str__(self):
         

@@ -38,9 +38,9 @@ class App:
                 
         print('\n\n1 - Insert new record')
         
-        print('2 - Finish activity')
+        print('2 - Set date end in record')
         
-        print('3 - Update status Qualitor')
+        print('3 - Update status Qualitor in record')
             
         print('4 - Exit\n')
         
@@ -54,13 +54,21 @@ class App:
         
             self._footerMenu()
             
+        elif option_selected == 2:
+            
+            self._show_title('Set date end in record')
+            
+            self._logBook.set_date_end_record()
+        
         elif option_selected == 3:
             
             self._show_title('Update status Qualitor')
             
-            self._logBook.update_status_qualitor()
+            self._logBook.update_status_qualitor_record()
             
             self._show_menu()
+            
+        
                         
         else:
             
