@@ -4,7 +4,7 @@ from models.record import Record
 
 class LogBook:
     
-    _count_record = 0
+    _count_record = 1
     
     def __init__(self):
         
@@ -47,8 +47,17 @@ class LogBook:
         
         print(f'{'\n#ID'.ljust(5)} | {'Ticket'.ljust(8)} | {'Date start'.ljust(20)} | {'Date end'.ljust(20)} | {'In Qualitor'.ljust(10)} | Activity')
               
-        print(self._records[id])   
-             
+        print(self._records[id - 1]) 
+        
+    
+    def update_status_qualitor(self):
+        
+        self.list_records()
+        
+        id_selected = int(input('\nPress record\'s ID for update: '))
+        
+        self._records[id_selected]._save_qualitor = not self._records[id_selected]._save_qualitor            
+        
     
     def __str__(self):
         
