@@ -1,6 +1,6 @@
 # Diário de bordo
 
-**Diário de bordo** is a Booklog free tool for managing daily activities.
+**Diário de bordo** is a Booklog free for managing daily activities.
 
 **You will be able to:**
 
