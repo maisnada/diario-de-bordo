@@ -1,4 +1,5 @@
 from datetime import datetime
+import time
 
 from models.record import Record
 
@@ -56,7 +57,16 @@ class LogBook:
         
         id_selected = int(input('\nPress record\'s ID for update: '))                           
         
-        self._records[id_selected - 1].update_save_qualitor()
+        try:
+        
+            self._records[id_selected - 1].update_save_qualitor()
+        
+        except IndexError as e:
+            
+            print(f'\nID {id_selected} not found in list. Try again!')
+            
+            time.sleep(3)
+            
         
     def set_date_end_record(self):
         
