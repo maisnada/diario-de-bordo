@@ -87,7 +87,9 @@ class App:
                 
         except Exception as e:
             
-            print(f'\x1b[2;30;41m> {e}\x1b[0m\n')  
+            input(f'\n\x1b[2;30;41m{e}\x1b[0m\n')  
+            
+            self._main()
                    
             
     def _resume_logBook_today(self):
