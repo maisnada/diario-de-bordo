@@ -53,20 +53,21 @@ class LogBook:
     
     def update_status_qualitor_record(self):
         
-        self.list_records()
-        
-        id_selected = int(input('\nPress record\'s ID for update: '))                           
+        self.list_records()        
         
         try:
         
+            id_selected = int(input('\nPress record\'s ID for update: '))                           
+            
             self._records[id_selected - 1].update_save_qualitor()
         
         except IndexError as e:
+                        
+            raise Exception(f'ID {id_selected} not found in list. Try again!')
+        
+        except ValueError as e:
             
-            print(f'\nID {id_selected} not found in list. Try again!')
-            
-            time.sleep(3)
-            
+            raise Exception('ID only number! Try again!')
         
     def set_date_end_record(self):
         

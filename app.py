@@ -50,39 +50,46 @@ class App:
             
         print('4 - Exit\n')
         
-        option_selected = int(input('Enter a option: '))
-        
-        if option_selected == 1:                  
+        try:
             
-            self._show_subtitle('Insert new record')
+            option_selected = int(input('Enter a option: '))
             
-            self._logBook.insert_record()
-        
-            input('\nPress any key to return menu: ')
+            if option_selected == 1:                  
+                
+                self._show_subtitle('Insert new record')
+                
+                self._logBook.insert_record()
             
-            self._main()
+                input('\nPress any key to return menu: ')
+                
+                self._main()
+                
+                
+            elif option_selected == 2:
+                
+                self._show_subtitle('Set date end in record')
+                
+                self._logBook.set_date_end_record()
+                
+                self._main()
             
+            elif option_selected == 3:
+                
+                self._show_subtitle('Update status Qualitor')
+                
+                self._logBook.update_status_qualitor_record()
+                
+                self._main()
+                
+            else:
+                
+                self._exit()
+                
+        except Exception as e:
             
-        elif option_selected == 2:
+            print(f'\x1b[2;30;41m> {e}\x1b[0m\n')  
+                   
             
-            self._show_subtitle('Set date end in record')
-            
-            self._logBook.set_date_end_record()
-            
-            self._main()
-        
-        elif option_selected == 3:
-            
-            self._show_subtitle('Update status Qualitor')
-            
-            self._logBook.update_status_qualitor_record()
-            
-            self._main()
-               
-        else:
-            
-            self._exit()        
-        
     def _resume_logBook_today(self):
         
         self._show_subtitle('Record\'s list today\'s')
