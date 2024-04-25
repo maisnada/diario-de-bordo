@@ -7,22 +7,21 @@ class App:
     def __init__(self):
         
         self._logBook = LogBook()
-                
-        self._show_menu()
-      
-            
-    def _show_title(self, title):
+
+        self._main()     
+        
+    def _show_title(self):
         
         os.system('cls')
                      
-        print(f'\n\x1b[6;30;42m☵☵ {title} ☵☵ \x1b[0m\n')
-        
-    
-    def _footerMenu(self):
-        
-        input('\nPress any key to return menu: ')
+        print(f'\n\x1b[6;30;42m>> BookLog <<\x1b[0m\n') 
+                  
             
-        self._show_menu()         
+    def _show_subtitle(self, title):
+
+        self._show_title()
+                 
+        print(f'\x1b[6;30;47m> {title}\x1b[0m\n')  
     
 
     def _exit(self):
@@ -32,9 +31,16 @@ class App:
         quit()
     
 
-    def _show_menu(self):        
-
+    def _main(self):
+        
+        self._show_title()
+        
         self._resume_logBook_today()
+        
+        self._show_menu()
+      
+
+    def _show_menu(self):        
                 
         print('\n\n1 - Insert new record')
         
@@ -46,39 +52,40 @@ class App:
         
         option_selected = int(input('Enter a option: '))
         
-        if option_selected == 1:
+        if option_selected == 1:                  
             
-            self._show_title('Insert new record')
+            self._show_subtitle('Insert new record')
             
             self._logBook.insert_record()
         
-            self._footerMenu()
+            input('\nPress any key to return menu: ')
+            
+            self._main()
+            
             
         elif option_selected == 2:
             
-            self._show_title('Set date end in record')
+            self._show_subtitle('Set date end in record')
             
             self._logBook.set_date_end_record()
             
-            self._show_menu()
+            self._main()
         
         elif option_selected == 3:
             
-            self._show_title('Update status Qualitor')
+            self._show_subtitle('Update status Qualitor')
             
             self._logBook.update_status_qualitor_record()
             
-            self._show_menu()
-            
-        
-                        
+            self._main()
+               
         else:
             
             self._exit()        
         
     def _resume_logBook_today(self):
         
-        self._show_title('Record\'s list today\'s')
+        self._show_subtitle('Record\'s list today\'s')
                 
         self._logBook.list_records()
                         
