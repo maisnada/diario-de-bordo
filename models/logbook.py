@@ -1,5 +1,6 @@
 from datetime import datetime
 import time
+from json import dumps
 
 from models.record import Record
 
@@ -27,6 +28,12 @@ class LogBook:
         self.get_record(self._count_record)
         
         self._count_record += 1
+                
+        file = open("data.txt","a+",encoding="utf-8")
+        
+        file.write(dumps(vars(record),default=str))
+        
+        file.close()
 
 
     def list_records(self):
