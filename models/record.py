@@ -23,7 +23,8 @@ class Record:
         
         self._save_qualitor = not self._save_qualitor
     
-    def __str__(self):
+    #def __str__(self):
         
-        return f'{str(self._id).ljust(4)} | {str(self._ticket).ljust(8)} | {self._date_start.strftime('%d/%m/%Y %H:%M:%S').ljust(20)} | {('Not defined' if not self._date_end else self._date_end.strftime('%d/%m/%Y %H:%M:%S')).ljust(20)} | {('☐' if not self._save_qualitor else '☑').ljust(11)} | {self._activity}'
+    #    return f'{str(self._id).ljust(4)} | {str(self._ticket).ljust(8)} | {self._date_start.ljust(20)} | {('Not defined' if not self._date_end else self._date_end).ljust(20)} | {('☝' if not self._save_qualitor else '☑').ljust(11)} | {self._activity}'
+       
     

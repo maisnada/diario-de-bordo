@@ -1,8 +1,10 @@
 from datetime import datetime
-import time
-from json import dumps
+
+import json
+
 
 from models.record import Record
+from encoders.recordJSONEncoder import RecordJSONEncoder
 
 class LogBook:
     
@@ -20,23 +22,63 @@ class LogBook:
         ticket = input('Enter ticket number: ')
         
         activity = input('\nActivity description: ')
-
-        record = Record(self._count_record, ticket, datetime.now(), None, activity)
-                
+        
+        record = Record(self._count_record, ticket, (datetime.now()).timestamp(), None, activity)
+                        
         self._records.append(record)        
         
-        self.get_record(self._count_record)
+        #self.get_record(self._count_record)
         
         self._count_record += 1
                 
-        file = open("data.txt","a+",encoding="utf-8")
+        #file = open("data.json","a+",encoding="utf-8")
         
-        file.write(dumps(vars(record),default=str))
+        #file.write(dumps(vars(record),default=str))
+        #file.write(json.dumps(record.toJson(), indent=4))
+        #file.write(jsonpickle.encode(record, unpicklable=False))
+              
+        #file.close()
+
+        teste = json.dumps(record, cls=RecordJSONEncoder)
+
+        print(teste)
+        print(type(teste))
         
-        file.close()
+        eee = y = json.loads(teste, object_hook=Record)
 
-
+        print(eee)
+        print(type(eee))
+            
     def list_records(self):
+        
+        #file = open("data.json","r",encoding="utf-8")
+        
+        #file.write(dumps(vars(record),default=str))
+        
+        #linha = file.readline()
+        
+        #file.close()
+        
+        # Opening JSON file
+        f = open('data.json')
+        
+        data = json.load(f)
+        
+        
+        
+        #data = json.load(f)
+        #print(data)
+
+        
+        # Iterating through the json
+        # list
+        #for i in data['emp_details']:
+        #    print(i)
+        
+        # Closing file
+        #f.close()
+        
+       
         
         if len(self._records) > 0:
             
@@ -76,6 +118,7 @@ class LogBook:
             
             raise Exception('ID only number! Try again!')
         
+    
     def set_date_end_record(self):
         
         self.list_records()
