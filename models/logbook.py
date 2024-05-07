@@ -2,9 +2,8 @@ from datetime import datetime
 
 import json
 
-
 from models.record import Record
-from encoders.recordJSONEncoder import RecordJSONEncoder
+from encoders.recordJson import RecordJson
 
 class LogBook:
     
@@ -15,8 +14,8 @@ class LogBook:
         self._current_date = datetime.now()
         
         self._records = []
-        
-    
+                
+   
     def insert_record(self):
         
         ticket = input('Enter ticket number: ')
@@ -27,60 +26,49 @@ class LogBook:
                         
         self._records.append(record)        
         
-        #self.get_record(self._count_record)
+        self.get_record(self._count_record)
         
         self._count_record += 1
                 
-        #file = open("data.json","a+",encoding="utf-8")
+        file = open("data.json","a+",encoding="utf-8")
         
-        #file.write(dumps(vars(record),default=str))
-        #file.write(json.dumps(record.toJson(), indent=4))
-        #file.write(jsonpickle.encode(record, unpicklable=False))
-              
-        #file.close()
-
-        teste = json.dumps(record, cls=RecordJSONEncoder)
-
-        print(teste)
-        print(type(teste))
+        teste = []
         
-        eee = y = json.loads(teste, object_hook=Record)
+        teste.append(record)
+        
+        #file.write(json.dumps(record, cls=RecordJson))       
+        file.write(json.dumps(teste))
+        
+                  
+        file.close()
 
-        print(eee)
-        print(type(eee))
+        #teste = json.dumps(record, cls=RecordJson)
+
+        #teste = record.__dict__
+        #print(teste)
+        #print(type(teste))
+        #
+        #eee = json.loads(teste, object_hook=RecordJson.decode)
+
+        #print(eee)
+        #print(type(eee))
             
     def list_records(self):
+             
+        file = open("data.json","a+",encoding="utf-8")    
         
-        #file = open("data.json","r",encoding="utf-8")
+        print(file)
+        print(type(file))
         
-        #file.write(dumps(vars(record),default=str))
+        #quit()
         
-        #linha = file.readline()
-        
-        #file.close()
-        
-        # Opening JSON file
-        f = open('data.json')
-        
-        data = json.load(f)
-        
-        
-        
-        #data = json.load(f)
-        #print(data)
+        records = json.load(file, object_hook=RecordJson.decode)
 
+        file.close()
+        print(records)
+        print(type(records))
         
-        # Iterating through the json
-        # list
-        #for i in data['emp_details']:
-        #    print(i)
-        
-        # Closing file
-        #f.close()
-        
-       
-        
-        if len(self._records) > 0:
+        if records:
             
             print(f'{'#ID'.ljust(4)} | {'Ticket'.ljust(8)} | {'Date start'.ljust(20)} | {'Date end'.ljust(20)} | {'In Qualitor'.ljust(10)} | Activity')
                     
