@@ -1,6 +1,8 @@
 from datetime import datetime
 
 import json
+import os
+
 
 from models.record import Record
 from encoders.recordJson import RecordJson
@@ -54,13 +56,27 @@ class LogBook:
         #print(type(eee))
             
     def list_records(self):
+        
+            
              
-        file = open("data.json","a+",encoding="utf-8")    
+        p =os.path.join(os.path.abspath(os.getcwd()), 'data', 'data.json')
         
-        print(file)
-        print(type(file))
+        print(p)
         
-        #quit()
+        
+        
+        check_file = os.path.isfile(p)
+
+        print(check_file)
+        
+        quit()
+             
+        file = open("data.json","a+",encoding="utf-8")         
+       
+        print(len(file.readlines()))
+        print(type(file.readlines()))
+        
+        quit()
         
         records = json.load(file, object_hook=RecordJson.decode)
 
