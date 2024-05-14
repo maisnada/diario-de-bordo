@@ -3,6 +3,7 @@ from datetime import datetime
 import json
 import os
 
+from json import JSONDecodeError
 
 from models.record import Record
 from encoders.recordJson import RecordJson
@@ -55,47 +56,42 @@ class LogBook:
         #print(eee)
         #print(type(eee))
             
-    def list_records(self):
-        
-            
+    def list_records(self):           
              
-        p =os.path.join(os.path.abspath(os.getcwd()), 'data', 'data.json')
-        
-        print(p)
-        
-        
-        
-        check_file = os.path.isfile(p)
-
-        print(check_file)
-        
-        quit()
-             
-        file = open("data.json","a+",encoding="utf-8")         
+        p = os.path.join(os.path.abspath(os.getcwd()), 'data', 'data.json')
+           
+        if True:
+                     
+            file = open(p,"a+",encoding="utf-8")         
        
-        print(len(file.readlines()))
-        print(type(file.readlines()))
-        
-        quit()
-        
-        records = json.load(file, object_hook=RecordJson.decode)
+            try:            
+                
+                records = json.load(file, object_hook=RecordJson.decode)
 
-        file.close()
-        print(records)
-        print(type(records))
-        
-        if records:
-            
-            print(f'{'#ID'.ljust(4)} | {'Ticket'.ljust(8)} | {'Date start'.ljust(20)} | {'Date end'.ljust(20)} | {'In Qualitor'.ljust(10)} | Activity')
+                if records:
+
+                    print(f'{'#ID'.ljust(4)} | {'Ticket'.ljust(8)} | {'Date start'.ljust(20)} | {'Date end'.ljust(20)} | {'In Qualitor'.ljust(10)} | Activity')
+
+                    for record in self._records:
+
+                        print(record)
+
+                else:
+
+                    print('List\'s empty')
                     
-            for record in self._records:
+            except JSONDecodeError as e:
                 
-                print(record)
+                print(f'-->{e}')
                 
+            finally:
+                
+                file.close()
+                
+            
         else:
             
-            print('List\'s empty')
-            
+            print('arq not found')    
             
     def get_record(self, id):
         
