@@ -7,6 +7,7 @@ from json import JSONDecodeError
 
 from models.record import Record
 from encoders.recordJson import RecordJson
+from encoders.logBookJson import LogBookJson
 
 class LogBook:
     
@@ -14,7 +15,7 @@ class LogBook:
     
     def __init__(self):
         
-        self._current_date = datetime.now()
+        self._current_date = datetime.now().timestamp()
         
         self._records = []
                 
@@ -25,25 +26,27 @@ class LogBook:
         
         activity = input('\nActivity description: ')
         
-        record = Record(self._count_record, ticket, (datetime.now()).timestamp(), None, activity)
+        record = Record(self._count_record, ticket, datetime.now().timestamp(), None, activity)
                         
         self._records.append(record)        
         
         self.get_record(self._count_record)
         
         self._count_record += 1
+        
+        #print(self.__dict__)
+        
+        print(json.dumps(self, cls=LogBookJson))
+        
+        quit()
+        
+        #p = os.path.join(os.path.abspath(os.getcwd()), 'data', 'data.json')
                 
-        file = open("data.json","a+",encoding="utf-8")
-        
-        teste = []
-        
-        teste.append(record)
-        
-        #file.write(json.dumps(record, cls=RecordJson))       
-        file.write(json.dumps(teste))
-        
-                  
-        file.close()
+        #file = open(p,"a+",encoding="utf-8")
+                
+        #file.write(json.dumps(record, cls=LogBookJson))       
+                          
+        #file.close()
 
         #teste = json.dumps(record, cls=RecordJson)
 
@@ -62,11 +65,14 @@ class LogBook:
            
         if True:
                      
-            file = open(p,"a+",encoding="utf-8")         
+            file = open(p)         
        
             try:            
                 
-                records = json.load(file, object_hook=RecordJson.decode)
+                #records = json.load(file, object_hook=RecordJson.decode)
+                records = json.load(file)
+                
+                print(records)
 
                 if records:
 
@@ -80,7 +86,8 @@ class LogBook:
 
                     print('List\'s empty')
                     
-            except JSONDecodeError as e:
+            except Exception as e:
+                #JSONDecodeError
                 
                 print(f'-->{e}')
                 
