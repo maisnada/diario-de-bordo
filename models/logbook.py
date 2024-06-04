@@ -18,7 +18,15 @@ class LogBook:
         self._current_date = datetime.now().timestamp()
         
         self._records = []
+        
+        #p = os.path.join(os.path.abspath(os.getcwd()), 'data', 'data.json')
                 
+        #file = open(p,"a+",encoding="utf-8")
+                
+        #file.write(json.dumps(self, cls=LogBookJson))       
+                          
+        #file.close()
+
    
     def insert_record(self):
         
@@ -30,23 +38,23 @@ class LogBook:
                         
         self._records.append(record)        
         
-        self.get_record(self._count_record)
+        #self.get_record(self._count_record)
         
         self._count_record += 1
         
         #print(self.__dict__)
         
-        print(json.dumps(self, cls=LogBookJson))
+        #print(json.dumps(self, cls=LogBookJson))
         
-        quit()
+        #quit()
         
-        #p = os.path.join(os.path.abspath(os.getcwd()), 'data', 'data.json')
+        p = os.path.join(os.path.abspath(os.getcwd()), 'data', 'data.json')
                 
-        #file = open(p,"a+",encoding="utf-8")
+        file = open(p,"a+",encoding="utf-8")
                 
-        #file.write(json.dumps(record, cls=LogBookJson))       
+        file.write(json.dumps(self, cls=LogBookJson))       
                           
-        #file.close()
+        file.close()
 
         #teste = json.dumps(record, cls=RecordJson)
 
@@ -58,8 +66,26 @@ class LogBook:
 
         #print(eee)
         #print(type(eee))
+        
+    def list_records(self): 
+                        
+        p = os.path.join(os.path.abspath(os.getcwd()), 'data', 'data.json')
+                
+        file = open(p)
+                                
+        records = json.load(file)
+        #records = json.load(file)
+                          
+        file.close()
+        
+        print(type(records))
+        print(records)  
+        
+        print(records['_records'])
+        
+        
             
-    def list_records(self):           
+    def list_records2(self):           
              
         p = os.path.join(os.path.abspath(os.getcwd()), 'data', 'data.json')
            

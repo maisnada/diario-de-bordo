@@ -11,5 +11,8 @@ class LogBookJson(JSONEncoder):
     
     def decode(teste):
         
-        print('---->>>SSSS')
+        
+        #print(type(teste))
+        #print('---->>>SSSS')
         print(teste)
+        #print(teste["_current_date"])

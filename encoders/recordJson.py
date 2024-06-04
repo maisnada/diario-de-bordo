@@ -8,5 +8,5 @@ class RecordJson(JSONEncoder):
     
     def decode(teste):
         
-        print('---->>>SSSS')
-        print(teste)
+        #print('---->>>SSSS')
+        print(teste['_current_date'])
